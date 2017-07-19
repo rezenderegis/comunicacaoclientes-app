@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Chat</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="chat">
+
+  <div class="mensagem-lista">
+    <div *ngFor="let mensagem of mensagens" class="mensagem-conteudo">
+      <div [class]="mensagem.usuario != usuario ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'">
+          <div class="mensagem-texto">{{mensagem.mensagem}}</div>
+          <span class="mensagem-hora">{{mensagem.hora}}</span>
+          <span [class]="mensagem.lida ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida'">//</span>
+        </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <div id="footer">
+    <div class="rodape">
+      <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>
+    </div>
+    <div class="rodape">
+      <button ion-button icon-only (click)="enviarMensagem()">
+        <!--<ion-icon name="send"></ion-icon>-->
+        Enviar
+      </button>
+    </div>
+  </div>
+</ion-footer>
