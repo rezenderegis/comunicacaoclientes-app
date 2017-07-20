@@ -56433,13 +56433,13 @@ var ChatPage = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDU5ODY1Nn0.OwFxbxlqwmEOY9qlhdEumCQ_HLzYFQUHqrTVsOXlVwrdA8ep-xl9icq-Rq5O7py-PEhLKKZpPcA6Wq4atVuTNQ");
-        //    this._http.get('https://aluracar.herokuapp.com/',{headers:headers})
         this._http.get('http://localhost:8080/api/comunicacaos', { headers: headers })
             .map(function (res) { return res.json(); })
             .toPromise()
             .then(function (mensagens) {
-            console.log(mensagens);
-            loader.dismiss();
+            _this.mensagensServidor = mensagens,
+                //console.log(this.mensagensServidor);
+                loader.dismiss();
         })
             .catch(function (err) {
             console.log(err);
@@ -56455,12 +56455,15 @@ var ChatPage = (function () {
 }());
 ChatPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-chat',template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Chat</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding class="chat">\n\n  <div class="mensagem-lista">\n    <div *ngFor="let mensagem of mensagens" class="mensagem-conteudo">\n      <div [class]="mensagem.usuario != usuario ? \'mensagem mensagem-enviada\' : \'mensagem mensagem-recebida\'">\n          <div class="mensagem-texto">{{mensagem.mensagem}}</div>\n          <span class="mensagem-hora">{{mensagem.hora}}</span>\n          <span [class]="mensagem.lida ? \'mensagem-check mensagem-lida\' : \'mensagem-check mensagem-nao-lida\'">//</span>\n        </div>\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer>\n  <div id="footer">\n    <div class="rodape">\n      <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>\n    </div>\n    <div class="rodape">\n      <button ion-button icon-only (click)="enviarMensagem()">\n        <!--<ion-icon name="send"></ion-icon>-->\n        Enviar\n      </button>\n    </div>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/,
+        selector: 'page-chat',template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Chat</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding class="chat">\n\n  <div class="mensagem-lista">\n    <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">\n    <!--  <div [class]="mensagem.tEXTO != mensagem.tEXTO ? \'mensagem mensagem-enviada\' : \'mensagem mensagem-recebida\'"> -->\n          <div class="mensagem-texto">{{mensagem.tEXTO}}</div>\n         <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->\n          <span [class]="mensagem.lida ? \'mensagem-check mensagem-lida\' : \'mensagem-check mensagem-nao-lida\'">//</span>\n     <!--   </div> -->\n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer>\n  <div id="footer">\n    <div class="rodape">\n      <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>\n    </div>\n    <div class="rodape">\n      <button ion-button icon-only (click)="enviarMensagem()">\n        <!--<ion-icon name="send"></ion-icon>-->\n        Enviar\n      </button>\n    </div>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]])
 ], ChatPage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=chat.js.map
 
 /***/ }),
@@ -74881,15 +74884,14 @@ var MyApp = (function () {
 }());
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_10" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */]) === "function" && _a || Object)
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title>Menu</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content padding>\n        <ion-list inset>\n            <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina)">{{pagina.titulo}}</button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n\n<ion-nav [root]="rootPage" swipeBackEnabled="false" #content></ion-nav>\n'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams,LoadingController, AlertController  } from 'ionic-angular';
 import {Http, Headers} from '@angular/http';
 import {Injectable} from '@angular/core';
-
+import {Mensagem} from '../../domain/mensagem';
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.html',
@@ -10,6 +10,7 @@ import {Injectable} from '@angular/core';
 
 export class ChatPage implements OnInit{
 
+  public mensagensServidor: Mensagem[];
   usuario: string = '';
   mensagem: string = '';
   mensagens: object[] = [];
@@ -61,6 +62,7 @@ export class ChatPage implements OnInit{
   }
 
   ngOnInit() {
+ 
 
     let loader = this._loadingCtrl.create({
       content: 'Recuperando últimas mensagens'
@@ -77,7 +79,8 @@ export class ChatPage implements OnInit{
       .map(res => res.json())
       .toPromise()
         .then(mensagens => {
-                          console.log(mensagens);
+                          this.mensagensServidor = mensagens,
+                          //console.log(this.mensagensServidor);
                           loader.dismiss(); 
                         })
                         .catch ( err => { 
@@ -89,7 +92,5 @@ export class ChatPage implements OnInit{
                                 subTitle: 'Não foi possível recuperar a lista de mensagens.'}).present();
                         });    
 
-
   }
-
 }

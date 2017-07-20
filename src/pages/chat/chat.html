@@ -9,12 +9,12 @@
 <ion-content padding class="chat">
 
   <div class="mensagem-lista">
-    <div *ngFor="let mensagem of mensagens" class="mensagem-conteudo">
-      <div [class]="mensagem.usuario != usuario ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'">
-          <div class="mensagem-texto">{{mensagem.mensagem}}</div>
-          <span class="mensagem-hora">{{mensagem.hora}}</span>
+    <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">
+    <!--  <div [class]="mensagem.tEXTO != mensagem.tEXTO ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'"> -->
+          <div class="mensagem-texto">{{mensagem.tEXTO}}</div>
+         <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->
           <span [class]="mensagem.lida ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida'">//</span>
-        </div>
+     <!--   </div> -->
     </div>
   </div>
 
