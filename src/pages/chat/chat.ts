@@ -69,12 +69,23 @@ export class ChatPage implements OnInit{
     });
 
     loader.present();
+        //Local
+        /*
+        let endereco = 'http://localhost:8080/api/comunicacaos';
+        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDU5ODY1Nn0.OwFxbxlqwmEOY9qlhdEumCQ_HLzYFQUHqrTVsOXlVwrdA8ep-xl9icq-Rq5O7py-PEhLKKZpPcA6Wq4atVuTNQ';
+        */
+
+        //Produção
+        
+        let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
+        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+      
 
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDU5ODY1Nn0.OwFxbxlqwmEOY9qlhdEumCQ_HLzYFQUHqrTVsOXlVwrdA8ep-xl9icq-Rq5O7py-PEhLKKZpPcA6Wq4atVuTNQ");
+        headers.append('Authorization', 'Bearer ' + chave);
 
-    this._http.get('http://localhost:8080/api/comunicacaos',{headers:headers})
+    this._http.get(endereco,{headers:headers})
       
       .map(res => res.json())
       .toPromise()
