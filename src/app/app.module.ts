@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
+import 'rxjs/add/operator/toPromise'; 
+import {HttpModule} from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { ChatPage } from '../pages/chat/chat';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
