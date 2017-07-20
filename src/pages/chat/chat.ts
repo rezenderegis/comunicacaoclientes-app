@@ -72,8 +72,6 @@ export class ChatPage implements OnInit{
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDU5ODY1Nn0.OwFxbxlqwmEOY9qlhdEumCQ_HLzYFQUHqrTVsOXlVwrdA8ep-xl9icq-Rq5O7py-PEhLKKZpPcA6Wq4atVuTNQ");
 
-//    this._http.get('https://aluracar.herokuapp.com/',{headers:headers})
-
     this._http.get('http://localhost:8080/api/comunicacaos',{headers:headers})
       
       .map(res => res.json())
