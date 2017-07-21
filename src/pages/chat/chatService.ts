@@ -11,13 +11,13 @@ export class ChatService {
      * 
     */
 
-    buscaMensagens() {
-
-        
+    buscaMensagens() {  
 
 
     }
 
+    gravaMensagem(){
 
+    }
 
 }

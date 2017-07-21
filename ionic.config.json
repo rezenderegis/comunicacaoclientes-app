@@ -1,4 +1,8 @@
 {
   "name": "ccl",
-  "app_id": ""
+  "app_id": "",
+  "type": "ionic-angular",
+  "watchPatterns": [
+    "scss/**/*"
+  ]
 }

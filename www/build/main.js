@@ -56389,6 +56389,7 @@ var ChatPage = (function () {
         this.usuario = '';
         this.mensagem = '';
         this.mensagens = [];
+        this.data = [];
         this.usuario = 'usuario1'; //this.navParams.get('usuario');
         this.mensagens = [
             { usuario: 'usuario1', mensagem: 'mensagem1', hora: '23:00', lida: true },
@@ -56408,21 +56409,27 @@ var ChatPage = (function () {
         });*/
     };
     ChatPage.prototype.enviarMensagem = function () {
-        /*this.db.list('/chat').push({
-          usuario: this.usuario;
-          mensagem: this.mensagem;
-        }).then(() => {
-          // mensagem enviada
-        }).catch(() => {
-          // erro
-        });*/
-        this.mensagens.push({
-            usuario: 'usuario2',
-            mensagem: this.mensagem,
-            hora: '23:02',
-            lida: false
+        //PRODUCAO    
+        //let link = 'http://138.68.167.143:8080/api/comunicacaos';
+        //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+        var _this = this;
+        //LOCAL
+        var link = 'http://192.168.43.125:8080/api/comunicacaos';
+        var chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+        //let myData = JSON.stringify({username: this.data.username});
+        var dadosMensagem = { sQCOMUNICACAO: '', cDCLIENTE: '1', tEXTO: this.mensagem, dATA: new Date(), nRMATRICULAGERENTE: '', situacao: 'false' };
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + chave);
+        this._http.post(link, dadosMensagem, {
+            headers: headers,
+        })
+            .subscribe(function (data) {
+            _this.data.response = data["_body"];
+            _this.mensagem = '';
+        }, function (error) {
+            console.log("Oooops!");
         });
-        this.mensagem = '';
     };
     ChatPage.prototype.ngOnInit = function () {
         var _this = this;
@@ -56431,13 +56438,11 @@ var ChatPage = (function () {
         });
         loader.present();
         //Local
-        /*
-        let endereco = 'http://localhost:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDU5ODY1Nn0.OwFxbxlqwmEOY9qlhdEumCQ_HLzYFQUHqrTVsOXlVwrdA8ep-xl9icq-Rq5O7py-PEhLKKZpPcA6Wq4atVuTNQ';
-        */
+        var endereco = 'http://192.168.43.125:8080/api/comunicacaos';
+        var chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
         //Produção
-        var endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        var chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+        //let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
+        //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Headers */]();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', 'Bearer ' + chave);
@@ -56463,15 +56468,12 @@ var ChatPage = (function () {
 }());
 ChatPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-chat',template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>Chat</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding class="chat">\n\n  <div class="mensagem-lista">\n    <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">\n      <div [class]="mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? \'mensagem mensagem-enviada\' : \'mensagem mensagem-recebida\'"> \n          <div class="mensagem-texto">{{mensagem.tEXTO}}</div>\n         <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->\n          <span [class]="mensagem.lida ? \'mensagem-check mensagem-lida\' : \'mensagem-check mensagem-nao-lida\'">//</span>\n       </div> \n    </div>\n  </div>\n\n</ion-content>\n\n<ion-footer>\n  <div id="footer">\n    <div class="rodape">\n      <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>\n    </div>\n    <div class="rodape">\n      <button ion-button icon-only (click)="enviarMensagem()">\n        <!--<ion-icon name="send"></ion-icon>-->\n        Enviar\n      </button>\n    </div>\n  </div>\n</ion-footer>'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/chat/chat.html"*/,
+        selector: 'page-chat',template:/*ion-inline-start:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\pages\chat\chat.html"*/'<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Chat</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n<ion-content padding class="chat">\n\n\n\n  <div class="mensagem-lista">\n\n    <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">\n\n      <div [class]="mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? \'mensagem mensagem-enviada\' : \'mensagem mensagem-recebida\'"> \n\n          <div class="mensagem-texto">{{mensagem.tEXTO}}</div>\n\n         <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->\n\n          <span [class]="mensagem.lida ? \'mensagem-check mensagem-lida\' : \'mensagem-check mensagem-nao-lida\'">//</span>\n\n       </div> \n\n    </div>\n\n  </div>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n  <div id="footer">\n\n    <div class="rodape">\n\n      <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>\n\n    </div>\n\n    <div class="rodape">\n\n      <button ion-button icon-only (click)="enviarMensagem()">\n\n        <!--<ion-icon name="send"></ion-icon>-->\n\n        Enviar\n\n      </button>\n\n    </div>\n\n  </div>\n\n</ion-footer>'/*ion-inline-end:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\pages\chat\chat.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["c" /* Http */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* AlertController */]) === "function" && _e || Object])
 ], ChatPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=chat.js.map
 
 /***/ }),
@@ -56501,7 +56503,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>\n      Início\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  Tela inicial\n</ion-content>\n'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    <ion-title>\n\n      Início\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  Tela inicial\n\n</ion-content>\n\n'/*ion-inline-end:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\pages\home\home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], HomePage);
@@ -77217,7 +77219,7 @@ __decorate([
     __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({template:/*ion-inline-start:"/Users/fabricio/Documents/app/ionic2/ccl/src/app/app.html"*/'<ion-menu [content]="content">\n    <ion-header>\n        <ion-toolbar>\n            <ion-title>Menu</ion-title>\n        </ion-toolbar>\n    </ion-header>\n    <ion-content padding>\n        <ion-list inset>\n            <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina)">{{pagina.titulo}}</button>\n        </ion-list>\n    </ion-content>\n</ion-menu>\n\n<ion-nav [root]="rootPage" swipeBackEnabled="false" #content></ion-nav>\n'/*ion-inline-end:"/Users/fabricio/Documents/app/ionic2/ccl/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* Component */])({template:/*ion-inline-start:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\app\app.html"*/'<ion-menu [content]="content">\n\n    <ion-header>\n\n        <ion-toolbar>\n\n            <ion-title>Menu</ion-title>\n\n        </ion-toolbar>\n\n    </ion-header>\n\n    <ion-content padding>\n\n        <ion-list inset>\n\n            <button menuClose ion-item *ngFor="let pagina of paginas" (click)="abrePagina(pagina)">{{pagina.titulo}}</button>\n\n        </ion-list>\n\n    </ion-content>\n\n</ion-menu>\n\n\n\n<ion-nav [root]="rootPage" swipeBackEnabled="false" #content></ion-nav>\n\n'/*ion-inline-end:"D:\BRB\Projetos_Mobile\comunicacaoclientes-app\src\app\app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
