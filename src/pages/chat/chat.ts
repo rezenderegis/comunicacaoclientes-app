@@ -119,8 +119,6 @@ export class ChatPage implements OnInit{
 
   atualizaMensagens(){
 
-    alert("Atualizando");
-
     let loader = this._loadingCtrl.create({
       content: 'Recuperando últimas mensagens'
     });

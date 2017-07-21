@@ -18,6 +18,13 @@
     </div>
   </div>
 
+       
+      <button ion-button round (click)="atualizaMensagens()">
+        <!--<ion-icon name="send"></ion-icon>-->
+        Atualizar
+      </button>
+    
+
 </ion-content>
 
 <ion-footer>
@@ -27,7 +34,7 @@
       <ion-input type="text" [(ngModel)]="mensagem" placeholder="Mensagem..."></ion-input>
     </div>
     <div class="rodape">      
-      <button ion-button icon-only (click)="enviarMensagem()">
+      <button ion-button round (click)="enviarMensagem()">
         <!--<ion-icon name="send"></ion-icon>-->
         Enviar
       </button>
