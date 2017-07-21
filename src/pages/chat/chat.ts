@@ -70,6 +70,8 @@ export class ChatPage implements OnInit{
     }, error => {
         console.log("Oooops!");
     });    
+
+    this.atualizaMensagens();
   }
 
   ngOnInit() {
@@ -114,4 +116,49 @@ export class ChatPage implements OnInit{
                         });    
 
   }
+
+  atualizaMensagens(){
+
+    alert("Atualizando");
+
+    let loader = this._loadingCtrl.create({
+      content: 'Recuperando últimas mensagens'
+    });
+
+    loader.present();
+        //Local
+        
+        let endereco = 'http://192.168.43.125:8080/api/comunicacaos';
+        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+        
+        //Produção
+        
+        //let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
+        //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+      
+
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + chave);
+
+    this._http.get(endereco,{headers:headers})
+      
+      .map(res => res.json())
+      .toPromise()
+        .then(mensagens => {
+                          this.mensagensServidor = mensagens,
+                          //console.log(this.mensagensServidor);
+                          loader.dismiss(); 
+                        })
+                        .catch ( err => { 
+                            console.log(err);
+                            loader.dismiss();
+                            this._alertCtrl.create({
+                                title: 'Problema na conexão com o BRB',
+                              buttons: [{text: 'Ciente'}],
+                                subTitle: 'Não foi possível recuperar a lista de mensagens.'}).present();
+                        });
+
+  }
 }
+
