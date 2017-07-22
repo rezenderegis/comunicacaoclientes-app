@@ -47,12 +47,12 @@ export class ChatPage implements OnInit{
   enviarMensagem(){
 
     //PRODUCAO    
-    //let link = 'http://138.68.167.143:8080/api/comunicacaos';
-    //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+    let link = 'http://138.68.167.143:8080/api/comunicacaos';
+    let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
     
     //LOCAL
-    let link = 'http://192.168.43.125:8080/api/comunicacaos';
-    let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+   // let link = 'http://localhost:8080/api/comunicacaos';
+   // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
     //let myData = JSON.stringify({username: this.data.username});
 
     let dadosMensagem = {sQCOMUNICACAO:'',cDCLIENTE:'1',tEXTO:this.mensagem,dATA:new Date(),nRMATRICULAGERENTE:'',situacao:'false'};
@@ -67,11 +67,12 @@ export class ChatPage implements OnInit{
         .subscribe(data => {
         this.data.response = data["_body"]; 
         this.mensagem = '';
+        this.atualizaMensagens();
     }, error => {
         console.log("Oooops!");
     });    
 
-    this.atualizaMensagens();
+    
   }
 
   ngOnInit() {
@@ -84,13 +85,13 @@ export class ChatPage implements OnInit{
     loader.present();
         //Local
         
-        let endereco = 'http://192.168.43.125:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+       // let endereco = 'http://localhost:8080/api/comunicacaos';
+       // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
         
         //Produção
         
-        //let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+        let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
+        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
       
 
         let headers = new Headers();
@@ -126,13 +127,13 @@ export class ChatPage implements OnInit{
     loader.present();
         //Local
         
-        let endereco = 'http://192.168.43.125:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+      //  let endereco = 'http://localhost:8080/api/comunicacaos';
+      //  let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
         
         //Produção
         
-        //let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        //let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDYwMjk2MH0.xVn34Gi-uKHWPD9PW-MFUut4w3UqvrtVCRE_DtfSCaoH5PaMmoqdthBozWiV_VK5Jpl97roM3HJWuDWYb7wetg';
+        let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
+        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
       
 
         let headers = new Headers();
