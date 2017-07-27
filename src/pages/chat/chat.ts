@@ -48,11 +48,11 @@ export class ChatPage implements OnInit{
 
     //PRODUCAO    
     let link = 'http://138.68.167.143:8080/api/comunicacaos';
-    let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
+    let chave = "curl -X GET --header 'Accept: application/json' --header 'Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMTIwMTIxMH0.r4hmnzILm5aJ5cVWd7fLZUNOyvT7Zp2Y0G8662PFAYo9r00lA6WNkwCFWbB32KRU-cgoOqeVrRIzHEVzfwAsFg";
     
     //LOCAL
    // let link = 'http://localhost:8080/api/comunicacaos';
-   // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
+   // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMTIwMTIxMH0.r4hmnzILm5aJ5cVWd7fLZUNOyvT7Zp2Y0G8662PFAYo9r00lA6WNkwCFWbB32KRU-cgoOqeVrRIzHEVzfwAsFg';
     //let myData = JSON.stringify({username: this.data.username});
 
     let dadosMensagem = {sQCOMUNICACAO:'',cDCLIENTE:'1',tEXTO:this.mensagem,dATA:new Date(),nRMATRICULAGERENTE:'',situacao:'false'};
@@ -91,7 +91,7 @@ export class ChatPage implements OnInit{
         //Produção
         
         let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
+        let chave = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMTIwMTIxMH0.r4hmnzILm5aJ5cVWd7fLZUNOyvT7Zp2Y0G8662PFAYo9r00lA6WNkwCFWbB32KRU-cgoOqeVrRIzHEVzfwAsFg";
       
 
         let headers = new Headers();
