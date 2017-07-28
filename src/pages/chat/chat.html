@@ -13,7 +13,7 @@
       <div [class]="mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'"> 
           <div class="mensagem-texto">{{mensagem.tEXTO}}</div>
          <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->
-          <span [class]="mensagem.lida ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida'">//</span>
+          <span [class]="(mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? (mensagem.situacao ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida') : '')"></span>
        </div> 
     </div>
   </div>
