@@ -30,6 +30,7 @@ export class MyApp {
       splashScreen.hide();
     });
 
+/*
     this.push.register().then((t: PushToken) => {
       return this.push.saveToken(t);
     }).then((t: PushToken) => {
@@ -41,7 +42,7 @@ export class MyApp {
       .subscribe((msg) => {
     alert("RECEBEU MSG COM APP ABERTO "+ msg.title + ': ' + msg.text);
     // this.abrePagina(ChatPage);
-    });
+    });*/
   
 }
 
