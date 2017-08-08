@@ -1,33 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams,LoadingController, AlertController  } from 'ionic-angular';
-import {Http, Headers} from '@angular/http';
-import {Injectable} from '@angular/core';
-import {Mensagem} from '../../domain/mensagem';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { Http, Headers } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Mensagem } from '../../domain/chat/mensagem';
+import { ChatService } from '../../domain/chat/chat-service';
+
 @Component({
   selector: 'page-chat',
   templateUrl: 'chat.html',
 })
-
-export class ChatPage implements OnInit{
+export class ChatPage implements OnInit {
 
   public mensagensServidor: Mensagem[];
-  usuario: string = '';
   mensagem: string = '';
-  mensagens: object[] = [];
   data: any = [];
 
-  constructor(/*public db: AngularFireDatabase, */public navCtrl: NavController, 
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private _http: Http, 
+    private _loadingCtrl: LoadingController,
+    private _alertCtrl: AlertController,
+    private _chatService: ChatService) {
 
-  public navParams: NavParams,
-  private _http: Http, 
-  private _loadingCtrl: LoadingController,
-  private _alertCtrl: AlertController
-  ) {
-    this.usuario = 'usuario1'; //this.navParams.get('usuario');
-    this.mensagens = [
-      {usuario:'usuario1', mensagem:'mensagem1', hora:'23:00', lida:true},
-      {usuario:'usuario1', mensagem:'mensagem2', hora:'23:01', lida:true}
-    ];
   }
 
   ionViewWillLeave(){
@@ -44,120 +38,44 @@ export class ChatPage implements OnInit{
     });*/
   }
 
-  enviarMensagem(){
-
-    //PRODUCAO    
-    let link = 'http://138.68.167.143:8080/api/comunicacaos';
-    let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
-    
-    //LOCAL
-   // let link = 'http://localhost:8080/api/comunicacaos';
-   // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
-    //let myData = JSON.stringify({username: this.data.username});
-
-    let dadosMensagem = {sQCOMUNICACAO:'',cDCLIENTE:'1',tEXTO:this.mensagem,dATA:new Date(),nRMATRICULAGERENTE:'',situacao:'false'};
-
-    let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'Bearer ' + chave);
- 
-    this._http.post(link, dadosMensagem, {
-        headers:headers,
-        })
-        .subscribe(data => {
-        this.data.response = data["_body"]; 
-        this.mensagem = '';
-        this.atualizaMensagens();
-    }, error => {
-        console.log("Oooops!");
-    });    
-
-    
-  }
-
   ngOnInit() {
- 
-
-    let loader = this._loadingCtrl.create({
-      content: 'Recuperando últimas mensagens'
-    });
-
-    loader.present();
-        //Local
-        
-       // let endereco = 'http://localhost:8080/api/comunicacaos';
-       // let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
-        
-        //Produção
-        
-        let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
-      
-
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'Bearer ' + chave);
-
-    this._http.get(endereco,{headers:headers})
-      
-      .map(res => res.json())
-      .toPromise()
-        .then(mensagens => {
-                          this.mensagensServidor = mensagens,
-                          //console.log(this.mensagensServidor);
-                          loader.dismiss(); 
-                        })
-                        .catch ( err => { 
-                            console.log(err);
-                            loader.dismiss();
-                            this._alertCtrl.create({
-                                title: 'Problema na conexão com o BRB',
-                              buttons: [{text: 'Ciente'}],
-                                subTitle: 'Não foi possível recuperar a lista de mensagens.'}).present();
-                        });    
-
+    this.atualizarMensagens();
   }
 
-  atualizaMensagens(){
+  enviarMensagem(){
+    let mensagem = new Mensagem(null, 1, this.mensagem, new Date(), null, false, null);
+    this._chatService.enviarMensagem(mensagem)
+      .subscribe(data => {
+        this.data.response = data["_body"]; 
+        mensagem = null;
+        this.atualizarMensagens();
+      }, erro => {
+        this._alertCtrl.create({
+          title: 'Problema na conexão com o BRB',
+          buttons: [{text: 'Ok'}],
+          subTitle: 'Não foi possível enviar a mensagem.'
+        }).present();
+      });
+  }
 
+  atualizarMensagens(){
     let loader = this._loadingCtrl.create({
       content: 'Recuperando últimas mensagens'
     });
-
     loader.present();
-        //Local
-        
-      //  let endereco = 'http://localhost:8080/api/comunicacaos';
-      //  let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDc0MDA0M30.rUTOl6SAe99pETgUGw7Ie7DaVzNVY_6MwvETUdAAJCyB4NBTRvvCILnFzouzgl17uuG84icPhLwAPH6-R1c8yg';
-        
-        //Produção
-        
-        let endereco = 'http://138.68.167.143:8080/api/comunicacaos';
-        let chave = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMDg1MDc4OX0.ddskRiomLzyUAUOkkaIwshGvDPYONxqbUPR4txWsp8Ar_xRY5Pu3p7ah_5PjK5OOSTfI0V6Wb_Meq1Radogz7w';
-      
-
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'Bearer ' + chave);
-
-    this._http.get(endereco,{headers:headers})
-      
+    this._chatService.atualizarMensagens()
       .map(res => res.json())
       .toPromise()
-        .then(mensagens => {
-                          this.mensagensServidor = mensagens,
-                          //console.log(this.mensagensServidor);
-                          loader.dismiss(); 
-                        })
-                        .catch ( err => { 
-                            console.log(err);
-                            loader.dismiss();
-                            this._alertCtrl.create({
-                                title: 'Problema na conexão com o BRB',
-                              buttons: [{text: 'Ciente'}],
-                                subTitle: 'Não foi possível recuperar a lista de mensagens.'}).present();
-                        });
-
+      .then(mensagens => {
+        this.mensagensServidor = mensagens,
+        loader.dismiss(); 
+      }).catch (erro => { 
+        loader.dismiss();
+        this._alertCtrl.create({
+          title: 'Problema na conexão com o BRB',
+          buttons: [{text: 'Ok'}],
+          subTitle: 'Não foi possível recuperar a lista de mensagens.'
+        }).present();
+    });
   }
 }
-

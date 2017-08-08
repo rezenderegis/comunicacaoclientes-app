@@ -12,19 +12,17 @@
     <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">
       <div [class]="mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'"> 
           <div class="mensagem-texto">{{mensagem.tEXTO}}</div>
-         <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->
+          <!--<span class="mensagem-hora">{{mensagem.id}}</span>-->
           <span [class]="(mensagem.nRMATRICULAGERENTE == 0 || mensagem.nRMATRICULAGERENTE == null ? (mensagem.situacao ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida') : '')"></span>
-       </div> 
+        </div> 
     </div>
   </div>
-
        
-      <button ion-button round (click)="atualizaMensagens()">
+      <button ion-button round (click)="atualizarMensagens()">
         <!--<ion-icon name="send"></ion-icon>-->
         Atualizar
       </button>
     
-
 </ion-content>
 
 <ion-footer>
