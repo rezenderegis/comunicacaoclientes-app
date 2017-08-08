@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
+import { Platform, Nav,NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {Http, Headers} from '@angular/http';
@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
 import 'rxjs/add/operator/map'
 import { Push, PushToken} from '@ionic/cloud-angular';
+
+import {Injectable, Injector} from "@angular/core";
+
 
 @Component({
   templateUrl: 'app.html'
@@ -22,13 +25,26 @@ export class MyApp {
 
   @ViewChild(Nav) public nav: Nav;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public push: Push, private _http: Http) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+     public push: Push, 
+     private _http: Http,
+     //public navCtrl:NavController,
+         protected injector: Injector
+
+     ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    console.log(this.getActivePage.name);
+
+   // let view = this.nav.getActive();
+   // if (view.instance ChatPage {
+
+    //}
 
 /*
     this.push.register().then((t: PushToken) => {
@@ -45,6 +61,11 @@ export class MyApp {
     });*/
   
 }
+
+
+   getActivePage(): string {
+    return this.injector.get(NavController);
+  }
 
   abrePagina(pagina){
     this.nav.push(pagina.componente);

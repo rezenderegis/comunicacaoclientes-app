@@ -28,7 +28,8 @@ export class ChatPage implements OnInit{
       {usuario:'usuario1', mensagem:'mensagem1', hora:'23:00', lida:true},
       {usuario:'usuario1', mensagem:'mensagem2', hora:'23:01', lida:true}
     ];
-  }
+  
+}
 
   ionViewWillLeave(){
     /*this.mensagens.push({
