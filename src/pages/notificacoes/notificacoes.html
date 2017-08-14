@@ -1,0 +1,37 @@
+<!--
+  Generated template for the NotificacoesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Notiticações</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="chat">
+
+  <div class="mensagem-lista">
+    <div *ngFor="let mensagem of mensagensServidor" class="mensagem-conteudo">
+
+      <div *ngIf="mensagem.sQALERTA == 0">
+          <div [class]="mensagem.sQALERTA == 0 ? 'mensagem mensagem-enviada' : 'mensagem mensagem-recebida'"> 
+              <div class="mensagem-texto">{{mensagem.tEXTOALERTA}}</div>
+                  <!-- <span class="mensagem-hora">{{mensagem.id}}</span>-->
+                  <span [class]="mensagem.lida ? 'mensagem-check mensagem-lida' : 'mensagem-check mensagem-nao-lida'">//</span>
+              
+          </div>   
+      </div>
+    </div>
+  </div>
+    
+  <button ion-button round (click)="limparMensagens()">
+        <!--<ion-icon name="send"></ion-icon>-->
+        Limpar  
+  </button>  
+
+</ion-content>

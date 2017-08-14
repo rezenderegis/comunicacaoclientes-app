@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
 import 'rxjs/add/operator/map'
 
 @Component({
@@ -16,7 +17,8 @@ export class MyApp {
   rootPage:any = HomePage;
 
   public paginas = [
-    { titulo: 'Chat', componente: ChatPage }
+    { titulo: 'Chat', componente: ChatPage },
+    { titulo: 'Notificações', componente: NotificacoesPage }
   ];
 
   @ViewChild(Nav) public nav: Nav;

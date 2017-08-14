@@ -1,0 +1,14 @@
+** senha root mysql
+rnk30ghhh
+
+** comando para rodar backend
+java -jar ccl-0.0.1-SNAPSHOT_3.war --spring.profiles.active=dev
+
+git add .
+
+git pull -u origin master
+
+
+
+
+

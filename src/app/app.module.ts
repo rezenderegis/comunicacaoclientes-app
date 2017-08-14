@@ -7,6 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
+import { NotificacoesPage } from '../pages/notificacoes/notificacoes';
+import { NotificacoesService } from  '../domain/notificacoes/notificacoes-service';
+
 import 'rxjs/add/operator/toPromise'; 
 import {HttpModule} from '@angular/http';
 
@@ -14,7 +17,8 @@ import {HttpModule} from '@angular/http';
   declarations: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+    NotificacoesPage
   ],
   imports: [
     BrowserModule,
@@ -25,11 +29,13 @@ import {HttpModule} from '@angular/http';
   entryComponents: [
     MyApp,
     HomePage,
-    ChatPage
+    ChatPage,
+    NotificacoesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    NotificacoesService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
