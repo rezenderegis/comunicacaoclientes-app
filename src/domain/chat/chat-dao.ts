@@ -13,7 +13,7 @@ export class ChatDao {
     }
 
     private getChave(){
-        return 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMjI5NDQzMX0.lk_OA2ttvQfub970Zg765JyggOL582IbaayVILXIkPPTApA81Lc7oGogfQyEL3g15X6TskvE06qUiiqfzRRfcQ';
+        return 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUwMjk4NzgyNH0.tqPt6XhtdvNAmEaGZUz_KcBl2Vjaxpvro-HnWK0qXBEr6gyKUrHiNzhJ39ib3InoTKoOW8FUjHKmEIpGrMkvqA';
     }
 
     private getHeaders(){

@@ -59,6 +59,7 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ChatService,
+    NotificacoesService,
     ChatDao
   ]
 })

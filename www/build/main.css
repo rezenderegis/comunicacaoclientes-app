@@ -25340,3 +25340,143 @@ page-chat ion-input {
   font-size: 125%;
   background-color: white;
 }
+
+page-notificacoes .chat {
+  /*background-image: url(/img/chat-fundo.jpg);*/
+  background-color: #E0DAD6;
+  /*background-repeat: no-repeat;
+        background-size: 100%;*/
+}
+
+page-notificacoes .mensagem-lista {
+  margin-top: 12px;
+  padding: 0 5%;
+}
+
+page-notificacoes .mensagem-conteudo {
+  margin-bottom: 9px;
+}
+
+page-notificacoes .mensagem-conteudo::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+page-notificacoes .mensagem {
+  display: inline-block;
+  position: relative;
+  max-width: 236px;
+  border-radius: 7px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+page-notificacoes .mensagem.mensagem-enviada {
+  float: right;
+  /*background-color: #DCF8C6;*/
+  background-color: #D5EAFF;
+}
+
+page-notificacoes .mensagem.mensagem-recebida {
+  float: left;
+  background-color: #FFF;
+}
+
+page-notificacoes .mensagem.mensagem-recebida::before, page-notificacoes .mensagem.mensagem-enviada::before {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  width: 12px;
+  height: 19px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+page-notificacoes .mensagem.mensagem-recebida::before {
+  left: -11px;
+  background-image: url(/img/mensagem-recebida.png);
+}
+
+page-notificacoes .mensagem.mensagem-enviada::before {
+  right: -11px;
+  background-image: url(/img/mensagem-enviada.png);
+}
+
+page-notificacoes .mensagem .mensagem-texto {
+  padding: 5px 7px;
+  word-wrap: break-word;
+}
+
+page-notificacoes .mensagem .mensagem-texto::after {
+  content: " \00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+  display: inline;
+}
+
+page-notificacoes .mensagem .mensagem-hora {
+  position: absolute;
+  bottom: 2px;
+  right: 17px;
+  color: gray;
+  font-size: 12px;
+}
+
+page-notificacoes .mensagem .mensagem-check {
+  position: absolute;
+  bottom: 2px;
+  right: 5px;
+  font-size: 12px;
+}
+
+page-notificacoes .mensagem .mensagem-check.mensagem-lida {
+  color: blue;
+}
+
+page-notificacoes .mensagem .mensagem-check.mensagem-nao-lida {
+  color: gray;
+}
+
+page-notificacoes .rodape button {
+  border-radius: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+page-notificacoes .rodape {
+  position: relative;
+  min-width: 50px;
+}
+
+page-notificacoes div#footer div.rodape:first-child {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+page-notificacoes div#footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+page-notificacoes ion-input {
+  padding-left: 15px;
+  font-size: 125%;
+  background-color: white;
+}
